@@ -1,0 +1,12 @@
+.well-white {
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+}
+.marginTop {
+    margin-top: 5vw;
+}
+
+.datatable-ajax tr:hover{
+    background: #f3f3f3!important;
+    cursor: pointer;
+}
