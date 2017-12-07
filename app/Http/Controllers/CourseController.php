@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enrolment;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -113,8 +114,16 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id = 0)
     {
-        //
+        $course = Course::find($id);
+        if ($id == 0 || !$course)
+            return response()->json(['status'=>false, 'message'=>'Something wrong! please try again']);
+
+        Enrolment::where(['course_id' => $id])->delete();
+        if($course->delete())
+            return response()->json(['status'=>true, 'message'=>'Deleted Successfully']);
+
+        return response()->json(['status'=>false, 'message'=>'Something wrong! please try again']);
     }
 }

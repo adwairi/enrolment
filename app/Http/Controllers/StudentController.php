@@ -6,7 +6,7 @@ use App\Models\Enrolment;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Validator;
-
+use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
 
@@ -73,9 +73,13 @@ class StudentController extends Controller
         $student->email = $data['email'];
         $courses = $data['courses'];
         if ($student->save()){
-//            if(count($courses)){
-//                foreach ($courses as $course_id)
-//            }
+            if(count($courses)){
+                $data=[];
+                foreach ($courses as $course_id){
+                    $data[]=['student_id' => $student->id, 'course_id'=>$course_id];
+                }
+                DB::table('enrolments')->insert($data);
+            }
             if($request->ajax())
                 return response()->json(['status'=>true]);
             else
