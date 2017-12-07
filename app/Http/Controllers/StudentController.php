@@ -134,28 +134,6 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
 
-        $code=406;
-        $validator = Validator::make($request->all(), [
-            'locale' => 'filled|max:2',
-            'text' => 'required|max:255',
-        ]);
-        if($validator->fails())
-            return ['code' => $code, 'message' => implode("\n",$validator->messages()->all())];
-
-        $class   = $this->transClass;
-        $updated = false;
-        $text    =$request->input('text');
-
-        $trans = new $class();
-        $trans->id=$id;
-        $trans->locale=$request->input('locale', App::getLocale());
-        $trans->text=$text;
-        if($trans->save()) {
-            $updated = true;
-            $code = 200;
-        }
-
-        return response()->json(['updated'=>$updated, 'code'=>$code]);
     }
 
     /**
