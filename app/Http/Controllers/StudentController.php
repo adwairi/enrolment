@@ -55,6 +55,7 @@ class StudentController extends Controller
             'phone'     => 'required|numeric',
             'country'  => 'required',
             'email'  => 'required|email',
+            'image'  => 'required|image|dimensions:min_width=400,min_height=300',
         ]);
         if($validator->fails()) {
             if($request->ajax())
