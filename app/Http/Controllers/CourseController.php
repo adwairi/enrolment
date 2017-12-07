@@ -2,18 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Validator;
 
 class CourseController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $q = $request->input('q',100);
+//        $courses = Course::
+        if (trim($q)!='' && $request->ajax()){
+            $courses= Course::where('name', 'like', "%$q%")->paginate(10);
+            return $courses;
+        }else{
+            $courses = Course::all();
+            return view('course.index', ['courses' => $courses]);
+        }
     }
 
     /**
@@ -34,7 +55,22 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required|min:3'
+        ]);
+        if($validator->fails()) {
+            return redirect('/course')
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $course = new Course();
+        $data = $request->all();
+        $course->name = $data['name'];
+        $course->description = $data['description'];
+        if ($course->save()){
+            return redirect('/course');
+        }
     }
 
     /**

@@ -36,9 +36,8 @@
                     <!-- Main -->
                     <li class="navigation-divider"></li>
                     <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                    <li><a href="#"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-                    <li><a href="/Students"><i class="icon-gift"></i><span class="px-nav-label"> {{ __('common.students') }}</span></a></li>
-                    <li><a href="/Courses"><i class="icon-gift"></i><span class="px-nav-label"> {{ __('common.courses') }}</span></a></li>
+                    <li><a href="/student"><i class="icon-gift"></i><span class="px-nav-label"> {{ __('common.students') }}</span></a></li>
+                    <li><a href="/course"><i class="icon-gift"></i><span class="px-nav-label"> {{ __('common.courses') }}</span></a></li>
                 </ul>
             </div>
         </div>
