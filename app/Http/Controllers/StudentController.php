@@ -71,6 +71,16 @@ class StudentController extends Controller
         $student->phone = $data['phone'];
         $student->country = $data['country'];
         $student->email = $data['email'];
+
+
+        // upload image
+        $image = $data['image'];
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $imagename);
+        $student->imgUrl = asset('images/' . $imagename);
+
+
         $courses = $data['courses'];
         if ($student->save()){
             if(count($courses)){
