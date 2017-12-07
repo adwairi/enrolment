@@ -71,7 +71,11 @@ class StudentController extends Controller
         $student->phone = $data['phone'];
         $student->country = $data['country'];
         $student->email = $data['email'];
+        $courses = $data['courses'];
         if ($student->save()){
+//            if(count($courses)){
+//                foreach ($courses as $course_id)
+//            }
             if($request->ajax())
                 return response()->json(['status'=>true]);
             else

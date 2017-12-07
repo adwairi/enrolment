@@ -73,9 +73,6 @@
                                     <td>{{ $course['name'] }}</td>
                                     <td>{{ $course['description'] }}</td>
                                     <td>
-                                        <button type="button" class="view btn-info btn-sm" data-course-id="{{ $course['id'] }}" data-toggle="modal" data-target="#modal-option">
-                                            <span class="btn-label-icon left"><i class="glyphicon glyphicon-eye-open"></i></span> {{ __('common.view') }}
-                                        </button>
                                         <button type="button" class="edit btn-success btn-sm" data-course-id="{{ $course['id'] }}" data-toggle="modal" data-target="#modal-option">
                                             <span class="btn-label-icon left"><i class="glyphicon glyphicon-edit"></i></span> {{ __('common.edit') }}
                                         </button>

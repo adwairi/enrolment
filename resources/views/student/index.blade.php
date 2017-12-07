@@ -78,6 +78,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="image" class="col-md-3 control-label">{{ __('common.image') }}</label>
+                            <div class="col-md-9">
+                                <input type="file" name="image" class="form-control-file" id="image">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="courses" class="col-md-3 control-label">{{ __('common.courses') }}</label>
                             <div class="col-md-9">
                                 <select name="courses[]" id="courses" class="form-control" multiple="multiple" >
@@ -245,37 +251,15 @@
                 email: {
                     required: true,
                     email: true
+                },
+                image: {
+                    required: true,
+                    extension: "png|jpeg|jpg"
                 }
 
             }
         });
 
-//
-//        $( "#form" ).submit(function (event) {
-//            if(!validator.form()){
-//                event.preventDefault();
-//            }
-//        });
-
-//        $.validator.addMethod('minImageWidth', function(value, element, minWidth) {
-//            return ($(element).data('imageWidth') || 0) > minWidth;
-//        }, function(minWidth, element) {
-//            var imageWidth = $(element).data('width');
-//            return (imageWidth)
-//                ? ("Your image's width must be greater than " + minWidth + "px")
-//                : "Selected file is not an image.";
-//        });
-//        $.validator.addMethod('minImageHeight', function(value, element, minHeight) {
-//            return ($(element).data('imageHeight') || 0) > minHeight;
-//        }, function(minHeight, element) {
-//            var imageHeight = $(element).data('imageHeight');
-//            return (imageHeight)
-//                ? ("Your image's height must be greater than " + minHeight + "px")
-//                : "Selected file is not an image.";
-//        });
-//        $(document).ready(function() {
-//            $('.js-example-basic-multiple').select2();
-//        });
 
         $(document).ready(function () {
             $('#courses').select2({
@@ -291,7 +275,7 @@
                     processResults: function(data, params){
                         params.page = params.page || 1;
                         return{
-                            results: data.datagit ,
+                            results: data.data,
                             pagination: {
                                 more: (params.page * 10) < data.total
                             }
